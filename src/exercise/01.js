@@ -9,7 +9,9 @@ function countReducer(state, action) {
   // state is an object along with state
   console.log(state, action)
   // any property the action has which is defined by setState will overwride any property of the state
-  return ({...state, ...action})
+  // function based
+  //determine if function or state, return action called on state if function or return iterable
+  return {...state,...(typeof action === 'function' ? action(state) : action)}
 }
 
 
@@ -26,6 +28,7 @@ function Counter({initialCount = 0, step = 1}) {
   // changes to the next two lines of code! Remember:
   // The 1st argument is called "state" - the current value of count
   // The 2nd argument is called "newState" - the value passed to setCount
+  //const increment = () => setState(currentState => ({count: count + step}))
   const increment = () => setState({count: count + step})
   return <button onClick={increment}>{count}</button>
 }
