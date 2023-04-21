@@ -4,15 +4,14 @@
 import React, {useReducer} from 'react'
 
 // newState and action are interchangeable
-function countReducer(state, action) {
+const countReducer = (state, action) => ({...state,...(typeof action === 'function' ? action(state) : action)})
   // callback setCount will update based on what is passed in
   // state is an object along with state
-  console.log(state, action)
   // any property the action has which is defined by setState will overwride any property of the state
   // function based
-  //determine if function or state, return action called on state if function or return iterable
-  return {...state,...(typeof action === 'function' ? action(state) : action)}
-}
+  //determine if function or object, return action called on state if function or return iterable
+  
+
 
 
 
