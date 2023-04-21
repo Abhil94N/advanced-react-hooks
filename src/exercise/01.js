@@ -12,6 +12,7 @@ import React, {useReducer} from 'react'
   //determine if function or object, return action called on state if function or return iterable
   
 function countReducer(state, action) {
+  console.log(action)
   switch(action.type) {
     case 'INCREMENT': {
       return {count: state.count + action.step}
@@ -37,6 +38,7 @@ function Counter({initialCount = 0, step = 1}) {
   // The 1st argument is called "state" - the current value of count
   // The 2nd argument is called "newState" - the value passed to setCount
   //const increment = () => dispatch(currentState => ({count: count + step}))
+  //can pass additional parameters in for action to consider
   const increment = () => dispatch({type: 'INCREMENT', step})
   return <button onClick={increment}>{count}</button>
 }
